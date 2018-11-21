@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmnls:th="http://thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/indexCss.css">
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+        }
+        
+        .hero-image {
+            background-image: url("");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .topnav {
+            text-align: center;
+            padding-bottom: 10px;
+            float: left;
+        }
+        
+        input[type=text] {
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+        
+        a.search {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 50pt;
+            border-radius: 25pt;
+        }
+        
+        .card {
+            max-width: 300px;
+            margin-right: auto;
+            text-align: center;
+            font-family: arial;
+            display: inline-block;
+            padding: 50px 75px 50px 100px;
+        }
+        
+        .price {
+            color: grey;
+            font-size: 22px;
+        }
+        
+        .card button {
+            border: none;
+            outline: 0;
+            padding: 12px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+        
+        .card button:hover {
+            opacity: 0.7;
+        }
+        
+        ul {
+            list-style-type: none;
+            margin-top: 10px;
+            padding: 0;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        li {
+            float: right;
+        }
+        
+        font {
+            font-family: Helvetica;
+        }
+        
+        #resultsearch {
+            color: black;
+            padding-top: -20%;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 250%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table style="width:100%">
+        <tr>
+            <th style="width: 5%"></th>
+            <td><a class="search"><b>Sha</b>lala</a></td>
+            <th colspan="2">
+
+                <form action="get" th:action="@{/search}" th:object="${search}">
+                    <input style="width: 70% ; margin-left: 20%; " type="text" name="search" id="search" placeholder="Search.."></input>
+                    <th style="width: 50px">
+                        <button class="iconn" type="submit" style="margin-left:0px;border-radius: 20% ;background-color: #F5F5F5; "><img src="https://image.flaticon.com/icons/svg/34/34202.svg" width="30" height="30"></button>
+
+                </form>
+                </th>
+                <th style="width: 4%"></th>
+
+    </table>
+    <hr>
+
+    <h3 id="resultsearch"><i>" result by searching.... "</i></h3>
+    <br>
+    <div class="topnav">
+
+        <b </div>
+        <br>
+        <div class="card" th:each="product : ${searchProduct}">
+            <img th:src="${product.productImage}" style="width:100%">
+            <h1 th:text="${product.productName}"></h1>
+            <p class="price" th:text="${product.productPrice}"></p>
+            <a th:href="${'/productdetail/' + product.productId}">
+                <button type="hidden" id="productId" name="productId" >View Details</button>
+            </a>
+        </div>
+    </body>
+</html>

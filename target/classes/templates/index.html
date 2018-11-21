@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmnls:th="http://thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/indexCss.css">
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+        }
+        
+        .hero-image {
+            background-image: url("");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        input[type=text] {
+            width: 130px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            transition: width 0.4s ease-in-out;
+        }
+        
+        .card {
+            max-width: 300px;
+            margin-right: auto;
+            text-align: center;
+            font-family: arial;
+            display: inline-block;
+            padding: 50px 75px 50px 100px;
+        }
+        
+        .price {
+            color: grey;
+            font-size: 22px;
+        }
+        
+        .card button {
+            border: none;
+            outline: 0;
+            padding: 12px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+        
+        .card button:hover {
+            opacity: 0.7;
+        }
+        
+        ul {
+            list-style-type: none;
+            margin-top: 10px;
+            padding: 0;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        li {
+            float: right;
+        }
+        
+        font {
+            font-family: Helvetica;
+        }
+        
+        input[type=submit] {
+            background-color: #000000;
+            border: none;
+            color: white;
+            font-size: 20px;
+            padding: 30px 100px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        input[type=text] {
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+        
+        a.search {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 50pt;
+            border-radius: 25pt;
+        }
+        
+        #quotes {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        
+        #best {
+            color: #CC0000;
+        }
+        
+        #poss {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table style="width:100%">
+        <tr>
+            <th style="width: 5%"></th>
+            <td><a class="search"><b>Sha</b>lala</a></td>
+            <th colspan="2">
+
+                <form action="get" th:action="@{/search}" th:object="${search}">
+                    <input style="width: 70% ; margin-left: 20%; " type="text" name="search" id="search" placeholder="Search..">
+                    <th style="width: 50px">
+                        <button class="iconn" type="submit" style="margin-left:0px;border-radius: 20% ;background-color: #F5F5F5; "><img src="https://image.flaticon.com/icons/svg/34/34202.svg" width="30" height="30"></button>
+                </form>
+                </th>
+                <th style="width: 4%"></th>
+    </table>
+    <hr>
+
+    <div class="hero-image">
+        <img src="https://static1.squarespace.com/static/563b3922e4b024e465531f0c/t/57b1e6a99f745670cc53b65e/1471276729004/01_08_16_WILSON_DAY_2459_HIGH_RES+BANNER.jpg?format=2500w" style="width:1350px; width: 100vw;">
+        <h1 id="quotes">This is the <span id="best">best E-commerce website</span> <span id="poss">if possible</span></h1>
+    </div>
+
+    <div class="topnav">
+
+    </div>
+    <br>
+    <div class="card" th:each="product : ${allProduct}">
+        <img th:src="${product.productImage}" style="width:100%">
+        <h1 th:text="${product.productName}"></h1>
+        <p class="price" th:text="${product.productPrice}"></p>
+        <a th:href="${'/productdetail/' + product.productId}">
+            <button type="hidden" id="productId" name="productId">View Details</button>
+        </a>
+    </div>
+</body>
+
+</html>

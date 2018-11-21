@@ -1,0 +1,16 @@
+int202\SWprocess\repository\ProductRepository.class
+int202\SWprocess\repository\UsersRepository.class
+int202\SWprocess\model\Products.class
+int202\SWprocess\repository\ProductDetailRepository.class
+int202\SWprocess\model\Orders.class
+int202\SWprocess\service\OrderService.class
+int202\SWprocess\repository\OrdersRepository.class
+int202\SWprocess\controller\OrdersController.class
+int202\SWprocess\SWprocessApplication.class
+int202\SWprocess\controller\UsersController.class
+int202\SWprocess\model\ProductDetail.class
+int202\SWprocess\model\Users.class
+int202\SWprocess\service\ProductService.class
+int202\SWprocess\service\UserService.class
+int202\SWprocess\service\ProductDetailService.class
+int202\SWprocess\controller\ProductController.class

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmnls:th="http://thymeleaf.org">
+
+<head>
+    <title>Shipping</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        h1 {
+            color: black;
+            text-align: left;
+            font-size: 40px;
+        }
+        
+        #p1 {
+            font-size: 25px;
+            color: midnightblue;
+            margin-left: 250px;
+            margin-bottom: -3%;
+        }
+        
+        #p2 {
+            font-size: 20px;
+            color: black;
+        }
+        
+        #info,
+        select {
+            width: 100%;
+            padding: 8px 8px;
+            border-radius: 4px;
+            margin-bottom: 1px;
+        }
+        
+        #address {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            height: 150px;
+            margin-bottom: 1px;
+        }
+        
+        input[type=submit] {
+            width: 30%;
+            background-color: #101652;
+            color: white;
+            padding: 20px;
+            margin-left: 40%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 23px;
+        }
+        
+        input[type=submit]:hover {
+            background-color: #9fa6e6;
+        }
+        
+        div {
+            background-color: white;
+            padding: 60px;
+            margin-left: 200px;
+            width: 50%;
+        }
+        
+        .left #pics {
+            margin-left: -1100px;
+            margin-top: -200px;
+            float: left;
+        }
+        
+        #payment {
+            margin-left: 80px;
+            font-size: 18px;
+            color: gray;
+        }
+        
+        #item {
+            margin-right: 0px;
+            font-size: 25px;
+            color: midnightblue;
+            margin-left: 0%;
+            padding: -15%;
+        }
+        
+        input[type=text] {
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+        
+        a.search {
+            font-size: 50pt;
+            border-radius: 25pt;
+        }
+        
+        #prodName {
+            font-size: 40px;
+            font-weight: bold;
+        }
+        
+        #prodPrice {
+            font-size: 40px;
+            font-weight: bold;
+        }
+        
+        #pics {
+            float: left;
+        }
+        
+        #Kerry {
+            font-size: 20pt;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <table style="width:100%">
+        <tr>
+            <th style="width: 5%"></th>
+            <td><a class="search"><b>Sha</b>lala</a></td>
+        </tr>
+    </table>
+    <hr>
+    <p id="p1"><b>Shipping</b></p>
+    <form th:action="@{/payment}" method="Post">
+        <div>
+            <p id="p2">Name</p>
+            <input type="text" id="info" name="full_name" placeholder="Your Name..." required="true">
+            <p id="p2">Address</p>
+            <input type="text" id="address" name="address" placeholder="Your Address..." required="true">
+            <p id="p2">Email</p>
+            <input type="text" id="info" name="email" placeholder="Your Email..." required="true">
+            <p id="p2">Phone</p>
+            <input type="text" id="info" name="phone_number" placeholder="Your Phone..." required="true">
+        </div>
+        <hr>
+        <div th:each="shippingdetail : ${shippingDetail}" class="container">
+            <p id="p2">Select Shipping Method</p>
+            <br>
+            <br>
+            <input type="radio" name="payment" value="Kerry" checked><span id="Kerry">Kerry</span>
+            <br>
+            <br>
+            <div class="left">
+                <img src="https://is5-ssl.mzstatic.com/image/thumb/Purple128/v4/9c/f2/b6/9cf2b6fc-230b-acc7-2549-5fd3a3803fc4/source/512x512bb.jpg" style="margin-left: -250px;
+                                                                         margin-top:-70px;" height="130" width="200">
+            </div>
+            <hr>
+            <p id="item">Item : <span id="prodName" th:text="${shippingdetail.productName}"></span></p>
+            <p id="item">Total : <span id="prodPrice" th:text="${shippingdetail.productPrice}*${quantity}" name="total"></span></p>
+            <input type="hidden" th:value="${shippingdetail.productPrice}*${quantity}" name="total_price" />
+            <input type="hidden" th:value="${shippingdetail.productId}" name="product_Id">
+            <input type="hidden" name="size" th:value="${size}">
+            <input type="hidden" name="quantity" th:value="${quantity}">
+            <input type="submit" value="Continue">
+        </div>
+    </form>
+</body>
+
+</html>
